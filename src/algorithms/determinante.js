@@ -1,8 +1,6 @@
 
 
 
-
-
 export default function determinant(){
     let idsOfTheDeterminant = []
     for(let i = 0; i < 50; i++){

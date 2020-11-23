@@ -4,5 +4,15 @@
     height: 15px;
     text-align: center;
     font-size: 5px;
+    background-color: white;
 }
 
+.beginning{
+    background-color: #99D867
+}   
+.end {
+    background-color: #FF7070;
+}
+.walls {
+    background-color: #5B8AE5;
+}

@@ -1,0 +1,23 @@
+
+.paintButton {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    width: 190px;
+    height: 20px;
+}
+
+.paint .pincel  {
+    width: 25px;
+    height: 25px;
+    margin-right: 10px; 
+    border-radius: 100%;
+
+ 
+ }
+.paint .pincel:hover{
+    background-color: #dddddd;
+}
+.paint img  {
+   width: 90%
+}

@@ -36,11 +36,22 @@ function creatingGrid(){
 }
 
 class Grid extends Component {
+    state = {
+        clicked: 0
+    }
+    setClicked(){
+        this.setState({clicked: !this.state.clicked})
+    }
     render() {
+        window.clicked = this.state.clicked
         return (
             <div>
                 <button></button>
-                <div className="grid">
+                <div 
+                    className="grid"
+                    onMouseUp={e => this.setClicked(e)}
+                    onMouseDown={e => this.setClicked(e)}
+                >
                     {creatingGrid()}
                 </div>
             </div>
