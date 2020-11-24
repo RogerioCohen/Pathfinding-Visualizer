@@ -49,8 +49,15 @@ class Grid extends Component {
                 <button></button>
                 <div 
                     className="grid"
-                    onMouseUp={e => this.setClicked(e)}
-                    onMouseDown={e => this.setClicked(e)}
+                    onMouseUp={e => {
+                        e.preventDefault()
+                        return this.setClicked(e)
+                    }}
+                    onMouseDown={e => {
+                        e.preventDefault()
+                        this.setClicked(e)
+                    }}
+                    draggable="false"
                 >
                     {creatingGrid()}
                 </div>

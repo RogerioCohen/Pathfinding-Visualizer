@@ -32,9 +32,8 @@ class Block extends Component {
                     }
                     return false
                 }}
-                onDrag={() => false}
                 onClick={e => this.paint(e)}
-
+                draggable="false"
             >
       
             </div>
