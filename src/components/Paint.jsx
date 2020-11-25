@@ -38,7 +38,7 @@ class Paint extends Component {
             changingBtn[oldSelectedBtn] = this.state[oldSelectedBtn] ? 0 : 1
             this.setState(changingBtn)
         }
-        console.log(this.state)
+
     }
     render(){
         window.selectedBtn = this.state.selectedButton
