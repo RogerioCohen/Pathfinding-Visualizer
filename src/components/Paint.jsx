@@ -9,32 +9,36 @@ import blackEraser from '../assets/images/eraser-tool-for-school.svg'
 import './Paint.css'
 
 class Paint extends Component {    
-
-    state = {
-        selectedButton: null,
+    images = {
         beginning: [blackPincel, greenPincel],
         end: [blackPincel, redPincel],
         walls: [blackPincel, bluePincel],
         eraser: [blackEraser, orangeEraser]
     }
+    state = {
+        selectedButton: null,
+        beginning: 0,
+        end: 0,
+        walls: 0,
+        eraser: 0
+    }
 
     changeTheSelectedButton(e){
         let newSelectedBtn = e.currentTarget.id
         let oldSelectedBtn = this.state.selectedButton
-        if(oldSelectedBtn == newSelectedBtn || !oldSelectedBtn){
-            let togglingBtn = {
-                selectedButton: oldSelectedBtn? null : newSelectedBtn ,
-                newSelectedBtn: this.state[newSelectedBtn].reverse(),
-            }
+        if(oldSelectedBtn === newSelectedBtn || !oldSelectedBtn){
+            let togglingBtn = {...this.state}
+            togglingBtn[newSelectedBtn] = this.state[newSelectedBtn] ? 0 : 1
+            togglingBtn.selectedButton = oldSelectedBtn? null : newSelectedBtn 
             this.setState(togglingBtn)
         } else {
-            let changingBtn = {
-                selectedButton: newSelectedBtn,
-                newSelectedBtn: this.state[newSelectedBtn].reverse(),
-                oldSelectedBtn: this.state[oldSelectedBtn].reverse()
-            }
+            let changingBtn = { ...this.state}
+            changingBtn.selectedButton = newSelectedBtn
+            changingBtn[newSelectedBtn] = this.state[newSelectedBtn] ? 0 : 1
+            changingBtn[oldSelectedBtn] = this.state[oldSelectedBtn] ? 0 : 1
             this.setState(changingBtn)
         }
+        console.log(this.state)
     }
     render(){
         window.selectedBtn = this.state.selectedButton
@@ -42,27 +46,27 @@ class Paint extends Component {
             <div className="paint">
                 <div className="paintButton">
                     <div className="pincel" id="beginning" onClick={e => this.changeTheSelectedButton(e)}>
-                        <img src={this.state.beginning[0]} alt=""/>
+                        <img src={this.images.beginning[this.state.beginning]} alt=""/>
                     </div>
-                    <p>Paint the beginning</p>
+                    <p>Paint the Beginning</p>
                 </div>    
                 <div className="paintButton" >
                     <div className="pincel" id="end" onClick={e => this.changeTheSelectedButton(e)}>
-                        <img src={this.state.end[0]} alt=""/>
+                        <img src={this.images.end[this.state.end]} alt=""/>
                     </div>
                     <p>Paint the End</p>
                 </div>    
                 <div className="paintButton">
                     <div className="pincel" id="walls" onClick={e => this.changeTheSelectedButton(e)}>
-                        <img src={this.state.walls[0]} alt=""/>
+                        <img src={this.images.walls[this.state.walls]} alt=""/>
                     </div>
                     <p>Paint the Walls</p>
                 </div>  
                 <div className="paintButton">
                     <div className="pincel" id="eraser" onClick={e => this.changeTheSelectedButton(e)}>
-                        <img src={this.state.eraser[0]} alt=""/>
+                        <img src={this.images.eraser[this.state.eraser]} alt=""/>
                     </div>
-                    <p>Paint the Walls</p>
+                    <p>Erase</p>
                 </div>  
             </div>
         )
