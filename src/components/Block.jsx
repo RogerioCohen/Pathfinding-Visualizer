@@ -3,22 +3,15 @@ import './Block.css'
 
 
 class Block extends Component {
-
-
-
-    paint(e){
-        console.log(window.clicked)
-        if(window.selectedBtn){
-            if(window.selectedBtn !== 'walls'){
-                
-                let lastPainting = document.getElementsByClassName(window.selectedBtn)[0]
-                if(lastPainting){
-                    lastPainting.className = 'block'
-                }
-                e.target.className = `block ${window.selectedBtn}`
-            } else if (window.clicked){
-                e.target.className = `block ${window.selectedBtn}`
+    paint(e, isEraser, isWall){
+        if(e.type === 'click'){
+            let lastPainting = document.getElementsByClassName(window.selectedBtn)[0]
+            if(lastPainting && !isEraser && !isWall){
+                lastPainting.className = 'block'
             }
+            isEraser? e.target.className = `block` : e.target.className = `block ${window.selectedBtn}`
+        } else if (window.clicked) {
+            isWall ? e.target.className = `block ${window.selectedBtn}` : e.target.className = `block`
         }
     }
 
@@ -27,13 +20,19 @@ class Block extends Component {
             <div className={`block`}
                 id={this.props.id}
                 onMouseMove={e => { 
-                    if(window.selectedBtn === 'walls'){
-                        return this.paint(e)
-                    }
-                    return false
+                    let isWall = window.selectedBtn === 'walls'
+                    let isEraser = window.selectedBtn === 'eraser'
+                    if(isWall || isEraser){
+                        return this.paint(e, isEraser, isWall)
+                    } 
+                    return 
                 }}
-                onClick={e => this.paint(e)}
-                draggable="false"
+                onClick={e => {
+                    if(window.selectedBtn){
+                        return this.paint(e, window.selectedBtn==='eraser', window.selectedBtn==='walls')
+                    }
+                    return
+                }}
             >
       
             </div>

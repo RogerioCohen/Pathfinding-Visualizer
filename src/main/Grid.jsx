@@ -39,8 +39,9 @@ class Grid extends Component {
     state = {
         clicked: 0
     }
-    setClicked(){
-        this.setState({clicked: !this.state.clicked})
+    setClicked(e, click){
+        e.preventDefault()
+        this.setState({clicked: click})
     }
     render() {
         window.clicked = this.state.clicked
@@ -50,14 +51,14 @@ class Grid extends Component {
                 <div 
                     className="grid"
                     onMouseUp={e => {
-                        e.preventDefault()
-                        return this.setClicked(e)
+                        this.setClicked(e, false)
                     }}
                     onMouseDown={e => {
-                        e.preventDefault()
-                        this.setClicked(e)
+                        this.setClicked(e, true)
                     }}
-                    draggable="false"
+                    onMouseLeave= {e => {
+                        this.setClicked(e, false)
+                    }}
                 >
                     {creatingGrid()}
                 </div>

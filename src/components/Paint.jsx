@@ -3,6 +3,8 @@ import blackPincel from '../assets/images/big-paint-brush.svg'
 import redPincel from '../assets/images/big-paint-brush-red.svg'
 import bluePincel from '../assets/images/big-paint-brush-blue.svg'
 import greenPincel from '../assets/images/big-paint-brush-green.svg'
+import orangeEraser from '../assets/images/eraser-tool-for-school-orange.svg'
+import blackEraser from '../assets/images/eraser-tool-for-school.svg'
 
 import './Paint.css'
 
@@ -12,32 +14,27 @@ class Paint extends Component {
         selectedButton: null,
         beginning: [blackPincel, greenPincel],
         end: [blackPincel, redPincel],
-        walls: [blackPincel, bluePincel]
+        walls: [blackPincel, bluePincel],
+        eraser: [blackEraser, orangeEraser]
     }
 
     changeTheSelectedButton(e){
         let newSelectedBtn = e.currentTarget.id
         let oldSelectedBtn = this.state.selectedButton
-        if(oldSelectedBtn !== null){
-            if(oldSelectedBtn === newSelectedBtn){
-                this.setState(
-                    {
-                        selectedButton: null,
-                        newSelectedBtn: this.state[newSelectedBtn].reverse(),
-                    }
-                )
-            } else {
-                this.setState({
-                    selectedButton: newSelectedBtn,
-                    newSelectedBtn: this.state[newSelectedBtn].reverse(),
-                    oldSelectedBtn: this.state[oldSelectedBtn].reverse()
-                })
+        if(oldSelectedBtn == newSelectedBtn || !oldSelectedBtn){
+            let togglingBtn = {
+                selectedButton: oldSelectedBtn? null : newSelectedBtn ,
+                newSelectedBtn: this.state[newSelectedBtn].reverse(),
             }
+            this.setState(togglingBtn)
         } else {
-            console.log('entrei')
-            this.setState({selectedButton: newSelectedBtn, newSelectedBtn: this.state[newSelectedBtn].reverse()})
+            let changingBtn = {
+                selectedButton: newSelectedBtn,
+                newSelectedBtn: this.state[newSelectedBtn].reverse(),
+                oldSelectedBtn: this.state[oldSelectedBtn].reverse()
+            }
+            this.setState(changingBtn)
         }
-        
     }
     render(){
         window.selectedBtn = this.state.selectedButton
@@ -61,8 +58,13 @@ class Paint extends Component {
                     </div>
                     <p>Paint the Walls</p>
                 </div>  
+                <div className="paintButton">
+                    <div className="pincel" id="eraser" onClick={e => this.changeTheSelectedButton(e)}>
+                        <img src={this.state.eraser[0]} alt=""/>
+                    </div>
+                    <p>Paint the Walls</p>
+                </div>  
             </div>
-
         )
     }
 }
