@@ -1,0 +1,32 @@
+
+div#header{
+    background: #88a3ec;
+    color: white;
+    height: 105px;
+    
+}
+
+h1{
+    text-align: right;
+}
+
+h5{
+    display: table-cell;
+    background: rgb(117, 240, 144);
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    border-radius: 20px;
+}
+
+h2#t{
+    display: table-cell;
+    background: #88a3ec;
+    width: 20px;
+    height: 30px;
+    text-align: center;
+    vertical-align: middle;
+    
+ 
+}
