@@ -1,0 +1,29 @@
+
+.header{
+    background: #88a3ec;
+    color: white;
+    height: 105px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+}
+
+
+button{
+    display: table-cell;
+    background: rgb(117, 240, 144);
+    font-family: 'Roboto';
+    font-weight: 700;
+    color: white;
+    width: 100px;
+    height: 30px;
+    text-align: center;
+    border: none;
+    border-radius: 20px;
+}
+
+button:focus {
+    outline: none;
+}
+
