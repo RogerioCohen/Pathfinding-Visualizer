@@ -9,10 +9,13 @@
 
 .beginning{
     background-color: #99D867
-}   
+}
 .end {
     background-color: #FF7070;
 }
 .walls {
     background-color: #5B8AE5;
+}
+.Visitados {
+  background-color: #000000
 }

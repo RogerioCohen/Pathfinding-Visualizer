@@ -6,7 +6,7 @@ import greenPincel from '../assets/images/big-paint-brush-green.svg'
 
 import './Paint.css'
 
-class Paint extends Component {    
+class Paint extends Component {
 
     state = {
         selectedButton: null,
@@ -37,7 +37,7 @@ class Paint extends Component {
             console.log('entrei')
             this.setState({selectedButton: newSelectedBtn, newSelectedBtn: this.state[newSelectedBtn].reverse()})
         }
-        
+
     }
     render(){
         window.selectedBtn = this.state.selectedButton
@@ -48,19 +48,19 @@ class Paint extends Component {
                         <img src={this.state.beginning[0]} alt=""/>
                     </div>
                     <p>Paint the beginning</p>
-                </div>    
+                </div>
                 <div className="paintButton" >
                     <div className="pincel" id="end" onClick={e => this.changeTheSelectedButton(e)}>
                         <img src={this.state.end[0]} alt=""/>
                     </div>
                     <p>Paint the End</p>
-                </div>    
+                </div>
                 <div className="paintButton">
                     <div className="pincel" id="walls" onClick={e => this.changeTheSelectedButton(e)}>
                         <img src={this.state.walls[0]} alt=""/>
                     </div>
                     <p>Paint the Walls</p>
-                </div>  
+                </div>
             </div>
 
         )

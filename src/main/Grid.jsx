@@ -47,7 +47,7 @@ class Grid extends Component {
         return (
             <div>
                 <button></button>
-                <div 
+                <div
                     className="grid"
                     onMouseUp={e => this.setClicked(e)}
                     onMouseDown={e => this.setClicked(e)}
@@ -56,12 +56,11 @@ class Grid extends Component {
                 </div>
             </div>
         )
-        
+
     }
 
-} 
+}
 export default Grid
 
 //console.log(Grid.creatingGrid())
 //export const blocks = creatingGrid()
-
