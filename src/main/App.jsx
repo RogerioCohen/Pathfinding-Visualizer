@@ -8,10 +8,9 @@ const App = function() {
             <Header></Header>
             <Grid></Grid>
         </React.Fragment>
+
     )
 }
 
 
 export default App
-
-
