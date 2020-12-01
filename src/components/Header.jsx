@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
 import './Header.css'
+import algorithms from '../algorithms/surroundingWalls'
 
 
+let selectedAlgorithm = null
 class Header extends React.Component{
     
     state = {
@@ -11,7 +13,8 @@ class Header extends React.Component{
         console.log('A');
         event.target.style.background = "#FF7070";
         this.setState({buttonChecker: false})
-        
+        console.log(algorithms)
+        selectedAlgorithm = algorithms
     }
     
     handleClickAs(event){
@@ -36,7 +39,7 @@ class Header extends React.Component{
         return(
             <div className = 'header'>
                     
-                <button onClick = {event => {
+                <button className='headerBtn' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickDij(event);
                     }  }
@@ -44,7 +47,7 @@ class Header extends React.Component{
                     View Dijstra                        
                 </button> 
             
-                <button onClick = {event => {
+                <button className='headerBtn' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickAs(event);
                     }  }
@@ -53,14 +56,14 @@ class Header extends React.Component{
                 </button>                                          
                                       
              
-                <button onClick = {event => {
+                <button className='headerBtn' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickBFS(event);
                     }  }}>
                         View BFS
                 </button>    
 
-                <button onClick = {event =>{
+                <button  className='headerBtn' onClick = {event =>{
                     if( this.state.buttonChecker ){
                         return this.handleClickDFS(event);
                     }  } }>
@@ -75,6 +78,6 @@ class Header extends React.Component{
     }      
         
 
-export default Header
+export {Header, selectedAlgorithm}
 
 

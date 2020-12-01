@@ -88,11 +88,9 @@ class Grid extends Component {
         let numRows = 30
         let blocks = []
         for(let i = 0; i <= numRows; i++){
-            let line = []
             for(let j = 0; j <= numColums; j++){
-                line.push(<Block clicked={this.state.clicked} selectedBtn={this.state.selectedButton} id={`${i}-${j}`}></Block>)
+                blocks.push(<Block clicked={this.state.clicked} selectedBtn={this.state.selectedButton} id={`${i}-${j}`}></Block>)
             }
-            blocks.push(line)
         }
         return blocks
     }
@@ -108,11 +106,10 @@ class Grid extends Component {
         } else {
             let changingBtn = { ...this.state}
             changingBtn.selectedButton = newSelectedBtn
-            changingBtn[newSelectedBtn] = this.state[newSelectedBtn] ? 0 : 1
-            changingBtn[oldSelectedBtn] = this.state[oldSelectedBtn] ? 0 : 1
+            changingBtn[newSelectedBtn] = 1
+            changingBtn[oldSelectedBtn] = 0
             this.setState(changingBtn)
         }
-
     }
     render(){
         return (

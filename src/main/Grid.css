@@ -42,7 +42,9 @@
     font-size: 5px;
     background-color: white;
 }
-
+.Visitados {
+    background-color: #000000; 
+}
 .beginning{
     background-color: #99D867
 }   

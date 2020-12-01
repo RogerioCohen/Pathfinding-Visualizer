@@ -10,7 +10,7 @@
 }
 
 
-button{
+.headerBtn{
     display: table-cell;
     background: rgb(117, 240, 144);
     font-family: 'Roboto';
@@ -23,7 +23,7 @@ button{
     border-radius: 20px;
 }
 
-button:focus {
+.headerBtn:focus {
     outline: none;
 }
 
