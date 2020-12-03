@@ -7,7 +7,12 @@ let selectedAlgorithm = null
 class Header extends React.Component{
     
     state = {
-        buttonChecker: true
+        buttonChecker: true,
+        possibleColors : ['green',"#FF7070"],
+        Dij:0,
+        Astar:0,
+        BFS:0,
+        DFS:0
     }
     handleClickDij(event){
         console.log('A');
@@ -39,7 +44,7 @@ class Header extends React.Component{
         return(
             <div className = 'header'>
                     
-                <button className='headerBtn' onClick = {event => {
+                <button className='headerBtn' id = 'Dij' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickDij(event);
                     }  }
@@ -47,7 +52,7 @@ class Header extends React.Component{
                     View Dijstra                        
                 </button> 
             
-                <button className='headerBtn' onClick = {event => {
+                <button className='headerBtn' id = 'Astar' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickAs(event);
                     }  }
@@ -56,14 +61,14 @@ class Header extends React.Component{
                 </button>                                          
                                       
              
-                <button className='headerBtn' onClick = {event => {
+                <button className='headerBtn'   id =  'BFS' onClick = {event => {
                     if( this.state.buttonChecker ){
                         return this.handleClickBFS(event);
                     }  }}>
                         View BFS
                 </button>    
 
-                <button  className='headerBtn' onClick = {event =>{
+                <button  className='headerBtn' id =  'DFS' onClick = {event =>{
                     if( this.state.buttonChecker ){
                         return this.handleClickDFS(event);
                     }  } }>
