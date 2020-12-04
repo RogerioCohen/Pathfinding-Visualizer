@@ -31,9 +31,9 @@ class Steps extends Component {
         conteudoDoBotao: 'Clear',
       }
     )
-    
+
     if(selectedAlgorithm){
-      
+
       let beginning = document.getElementsByClassName('beginning')[0]
       let end = document.getElementsByClassName('end')[0]
       if(beginning && end){
@@ -57,7 +57,7 @@ class Steps extends Component {
         window.alert('Please Select an Algorithm')
       }
 
-    
+
   }
 
   limpar() {
