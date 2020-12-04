@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Header.css'
-import algorithms from '../algorithms/surroundingWalls'
+import bfs from '../algorithms/bfs'
 
 
 let selectedAlgorithm = null
@@ -27,6 +27,7 @@ class Header extends React.Component{
         console.log('C');
         event.target.style.background = "#FF7070";
         this.setState({buttonChecker: false})
+        selectedAlgorithm = bfs
     }
 
     handleClickDFS(event){
