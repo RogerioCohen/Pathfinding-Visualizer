@@ -12,7 +12,7 @@ let selectedAlgorithm = null
 class Header extends React.Component{
     
     state = {
-        buttonChecker: true,
+        
         nowButton : null
     }
 
