@@ -82,7 +82,7 @@ class Steps extends Component {
     ids.forEach(id => {
       let block = document.getElementById(id)
       block.className += ' Visitados'
-      console.log(block)
+
     })
   }
 

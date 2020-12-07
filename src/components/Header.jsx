@@ -13,8 +13,7 @@ class Header extends React.Component{
         console.log('A');
         event.target.style.background = "#FF7070";
         this.setState({buttonChecker: false})
-        console.log(algorithms)
-        selectedAlgorithm = algorithms
+
     }
     
     handleClickAs(event){
