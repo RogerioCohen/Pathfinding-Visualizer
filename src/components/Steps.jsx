@@ -10,7 +10,6 @@ function creatingMatrix(){
   }
   let walls = [...document.getElementsByClassName('walls')]
   walls.forEach(wall => {
-    console.log(wall)
     let rowOfTheWall, columnOfTheWall
     [rowOfTheWall, columnOfTheWall] = wall.id.split('-')
     matrix[rowOfTheWall][columnOfTheWall] = 'wall'
@@ -32,13 +31,13 @@ class Steps extends Component {
         conteudoDoBotao: 'Clear',
       }
     )
-    
+
     if(selectedAlgorithm){
-      
+
       let beginning = document.getElementsByClassName('beginning')[0]
       let end = document.getElementsByClassName('end')[0]
       if(beginning && end){
-        let lista = selectedAlgorithm(beginning, end, creatingMatrix())
+        let lista = selectedAlgorithm(beginning.id, end.id, creatingMatrix())
         let counter = 0
         let interval = setInterval(()=>{
           if (counter === lista.length || !this.state.limpar) {
@@ -49,7 +48,7 @@ class Steps extends Component {
             this.pintarQuadradinho(lista[counter])
             counter++
           }
-        }, 500)
+        }, 20)
       
       } else {
         window.alert('Please Select the Blocks')
@@ -58,7 +57,7 @@ class Steps extends Component {
         window.alert('Please Select an Algorithm')
       }
 
-    
+
   }
 
   limpar() {
@@ -78,10 +77,13 @@ class Steps extends Component {
   }
 
 
-  pintarQuadradinho(id) {
-    let block = document.getElementById(id)
-    block.className += ' Visitados'
-    console.log(block)
+  pintarQuadradinho(ids){
+
+    ids.forEach(id => {
+      let block = document.getElementById(id)
+      block.className += ' Visitados'
+      console.log(block)
+    })
   }
 
 // Esse metodo de setInterval pode dar problemas de performance
