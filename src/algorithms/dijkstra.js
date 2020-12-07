@@ -14,7 +14,9 @@ function dijkstra(idBeginning, idEnd, matrix){
         if(matrix[i][j] === 'wall') return false
         return true
     } 
-    let queue = new TinyQueue()
+    let queue = new TinyQueue([], function(a, b){
+      return a.dist - b.dist;
+    })
     let seen = []
     let dist = []
     for(let i = 0; i <= 30; i++){
@@ -29,10 +31,14 @@ function dijkstra(idBeginning, idEnd, matrix){
     let visitList = []
 
     dist[ibeg][jbeg] = 0
-    queue.push([dist[ibeg][jbeg], [ibeg, jbeg]])
+    queue.push({
+      i: ibeg,
+      j: jbeg,
+      dist: dist[ibeg][jbeg]
+    })
     while(queue.length > 0){
-      let iFirst = queue.peek()[1][0]
-      let jFirst = queue.peek()[1][1]
+      let iFirst = queue.peek().i
+      let jFirst = queue.peek().j
       queue.pop()
       seen[iFirst][jFirst] = true
       
@@ -50,8 +56,15 @@ function dijkstra(idBeginning, idEnd, matrix){
           let newdist = 1 + dist[iFirst][jFirst];
           if(newdist < dist[newDiri][newDirj]){
               dist[newDiri][newDirj] = newdist
-              queue.push([newdist, [newDiri, newDirj]])
-              visitInTheIteration.push(`${newDiri}-${newDirj}`)
+              queue.push({
+                i: newDiri,
+                j: newDirj,
+                dist: newdist               
+              })
+              if(!(newDiri === iend  && newDirj === jend)){
+
+                visitInTheIteration.push(`${newDiri}-${newDirj}`)
+              }
           }
           
         }

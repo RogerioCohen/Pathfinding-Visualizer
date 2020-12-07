@@ -1,5 +1,9 @@
 
-
+.grid{
+    display: flex;
+    margin: 30px;
+    justify-content: space-around;
+}
 .grid-area{
     display: grid;
     grid-template-columns: repeat(61, 16px);

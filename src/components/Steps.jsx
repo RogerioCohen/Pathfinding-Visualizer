@@ -31,7 +31,7 @@ class Steps extends Component {
         conteudoDoBotao: 'Clear',
       }
     )
-
+    console.log(selectedAlgorithm)
     if(selectedAlgorithm){
 
       let beginning = document.getElementsByClassName('beginning')[0]

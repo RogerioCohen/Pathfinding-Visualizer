@@ -2,14 +2,16 @@
 .header{
     background: #88a3ec;
     color: white;
-    height: 105px;
+    height: 70px;
     display: flex;
     justify-content: space-around;
     align-items: center;
     
 }
 
-
+.title {
+    font-size: 25px;
+}
 .headerBtn{
     display: table-cell;
     background: rgb(117, 240, 144);
