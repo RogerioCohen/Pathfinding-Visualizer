@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './Header.css'
-import algorithms from '../algorithms/surroundingWalls'
+
 import Astar from '../algorithms/Astar' 
 import bfs from '../algorithms/bfs'
 import dfs from '../algorithms/dfs'
