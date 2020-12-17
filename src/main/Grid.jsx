@@ -1,24 +1,29 @@
 import React, {Component} from 'react'
 import blackPincel from '../assets/images/big-paint-brush.svg'
-import redPincel from '../assets/images/big-paint-brush-red.svg'
 import bluePincel from '../assets/images/big-paint-brush-blue.svg'
-import greenPincel from '../assets/images/big-paint-brush-green.svg'
+import yellowCheese from '../assets/images/cheese-triangular-piece-with-holes-yellow.svg'
+import blackCheese from '../assets/images/cheese-triangular-piece-with-holes.svg'
 import orangeEraser from '../assets/images/eraser-tool-for-school-orange.svg'
 import blackEraser from '../assets/images/eraser-tool-for-school.svg'
+import blackWeight from '../assets/images/weight.svg'
+import pinkWeight from '../assets/images/weight-pink.svg'
+import blackMouse from '../assets/images/mouse.svg'
+import greenMouse from '../assets/images/mouse-green.svg'
 import './Grid.css'
 
 
 
 class Block extends Component {
-    paint(e, isEraser, isWall){
+    paint(e, isEraser, isWall, isWeight){
         if(e.type === 'click'){
             let lastPainting = document.getElementsByClassName(this.props.selectedBtn)[0]
-            if(lastPainting && !isEraser && !isWall){
+            if(lastPainting && !isEraser && !isWall && !isWeight){
                 lastPainting.className = 'block'
             }
+
             isEraser? e.target.className = `block` : e.target.className = `block ${this.props.selectedBtn}`
         } else if (this.props.clicked) {
-            isWall ? e.target.className = `block ${this.props.selectedBtn}` : e.target.className = `block`
+            isWall || isWeight ? e.target.className = `block ${this.props.selectedBtn}` : e.target.className = `block`
         }
     }
 
@@ -29,14 +34,16 @@ class Block extends Component {
                 onMouseMove={e => { 
                     let isWall = this.props.selectedBtn === 'walls'
                     let isEraser = this.props.selectedBtn === 'eraser'
-                    if(isWall || isEraser){
-                        return this.paint(e, isEraser, isWall)
+                    let isWeight = this.props.selectedBtn === 'weight'
+
+                    if(isWall || isEraser || isWeight){
+                        return this.paint(e, isEraser, isWall, isWeight)
                     } 
                     return 
                 }}
                 onClick={e => {
                     if(this.props.selectedBtn){
-                        return this.paint(e, this.props.selectedBtn==='eraser', this.props.selectedBtn==='walls')
+                        return this.paint(e, this.props.selectedBtn==='eraser', this.props.selectedBtn==='walls', this.props.selectedBtn==='weight')
                     }
                     return
                 }}
@@ -52,10 +59,12 @@ class Block extends Component {
 class PaintBtn extends Component{
 
     images = {
-        beginning: [blackPincel, greenPincel],
-        end: [blackPincel, redPincel],
+        beginning: [blackMouse, greenMouse],
+        end: [blackCheese, yellowCheese],
         walls: [blackPincel, bluePincel],
-        eraser: [blackEraser, orangeEraser]
+        eraser: [blackEraser, orangeEraser],
+        weight: [blackWeight, pinkWeight]
+
     }
 
     render(){
@@ -77,7 +86,8 @@ class Grid extends Component {
         end: 0,
         walls: 0,
         eraser: 0,
-        gridAreaClicked: 0
+        gridAreaClicked: 0,
+        weight: 0
     }
     setClicked(e, click){
         e.preventDefault()
@@ -128,10 +138,12 @@ class Grid extends Component {
                     {this.creatingGridArea()}
                 </div>
                 <div className="grid-paint">
-                    <PaintBtn id="beginning" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.beginning}>Paint the Beginning</PaintBtn>
-                    <PaintBtn id="end" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.end}>Paint the End</PaintBtn>
+                    <PaintBtn id="beginning" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.beginning}>Put the Mouse</PaintBtn>
+                    <PaintBtn id="end" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.end}>Put the Cheese</PaintBtn>
                     <PaintBtn id="walls" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.walls}>Paint the Walls</PaintBtn>
-                    <PaintBtn id="eraser" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.eraser}>Erase</PaintBtn>
+                    <PaintBtn id="eraser" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.eraser}>Erase Mistakes</PaintBtn>
+                    <PaintBtn id="weight" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.weight}>Put the Weights</PaintBtn>
+
                 </div>
             </div>
         )
