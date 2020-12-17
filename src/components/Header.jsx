@@ -8,7 +8,58 @@ import dijkstra from '../algorithms/dijkstra'
 
 let selectedAlgorithm = null
 
+class Subtitle extends Component{
+    state = {
+       
+        nowAlgorithm : null,
+        texto : null
+    }
+    
+    lookingAlgorithms(){
 
+        console.log(this.props.id)
+        if(this.props.id === 'Dij' || this.props.id === 'Astar'){
+            return "Complexidade: O(m.log(n))"
+        }  else if(this.props.id === 'BFS' ||this.props.id === 'DFS' ){
+            return "Complexidade: O(m + n)" 
+        }    
+
+    }
+
+    
+
+    render(){
+        
+        return(
+            <div >
+                <div  className = 'subtitle'>{this.lookingAlgorithms()}</div>
+                <div >
+                    <div className = 'subBlocks'>
+                    <div> <div className='amarelo'> A </div> Shortest Path </div>
+                    </div>
+
+                    <div className = 'subBlocks'>
+                    <div><div className = 'laranja'>a</div>Visited Nodes </div>
+                    </div>
+
+                    <div className = 'subBlocks'> 
+                    <div> <div className = 'verde'>A</div> Starting Node</div>
+                    </div>
+                    
+                    <div className = 'subBlocks'>
+                    <div><div className = 'vermelho'>a</div>Ending Nodes </div>
+                    </div>
+                    
+                    <div className = 'subBlocks'>
+                    <div><div className = 'azul'>a</div> Wall</div>
+                    </div>
+
+                </div>    
+                </div> 
+            
+        ) 
+    }
+}
 class Header extends React.Component{
     
     state = {
@@ -18,7 +69,6 @@ class Header extends React.Component{
 
     handleClickDij(event){
         console.log('Dij');
-        
         selectedAlgorithm = dijkstra
         
     }
@@ -56,6 +106,7 @@ class Header extends React.Component{
        
     render(){
         return(
+            <div>
             <div className = 'header'>
                     
                 <button className='headerBtn' id = 'Dij' onClick = {event => {
@@ -91,7 +142,15 @@ class Header extends React.Component{
                     View DFS
                 </button>      
                 <h1> Pathfinding Visualizer</h1>
-                                                                                 
+
+            </div >
+            
+            <div>
+                <Subtitle id = {this.state.nowButton? this.state.nowButton.id : null}>
+                    </Subtitle>  
+            </div>
+                
+                                                                                   
             </div>
         )
 
