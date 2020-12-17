@@ -2,10 +2,15 @@ import React, {Component} from 'react'
 import {selectedAlgorithm} from './Header'
 //import {ListaVisitados, ListaCaminho} from 'App'
 import '../main/Grid.css'
+import './Steps.css'
+
+
+
+
 
 function creatingMatrix(){
   let matrix = []
-    let weight = [...document.getElementsByClassName('weight')]
+    let weights = [...document.getElementsByClassName('weight')]
   for(let i = 0; i <= 30; i++){
     matrix[i] = new Array(61)
   }
@@ -15,24 +20,31 @@ function creatingMatrix(){
     let rowOfTheWall, columnOfTheWall
     [rowOfTheWall, columnOfTheWall] = wall.id.split('-')
     matrix[rowOfTheWall][columnOfTheWall] = 'wall'
+    
+
+  })
+  weights.forEach(weight => {
+    let rowOfTheWall, columnOfTheWall
+    [rowOfTheWall, columnOfTheWall] = weight.id.split('-')
+    matrix[rowOfTheWall][columnOfTheWall] = 5
   })
   return matrix
 }
 
+
+
+
+let reproducing = false
 class Steps extends Component {
   state = {
     limpar: false,
-    conteudoDoBotao: 'Reproduce',
+    conteudoDoBotao: 'REPRODUCE',
     indiceSeta: 0
   }
 
   TesteButao() {
-    this.setState(
-      {
-        limpar: true,
-        conteudoDoBotao: 'Clear',
-      }
-    )
+    
+
     console.log(selectedAlgorithm)
     if(selectedAlgorithm){
 
@@ -41,6 +53,13 @@ class Steps extends Component {
       if(beginning && end){
         let listsFromTheAlgorithm = selectedAlgorithm(beginning.id, end.id, creatingMatrix())
         if(listsFromTheAlgorithm !== -1){
+          reproducing = true
+          this.setState(
+            {
+              limpar: true,
+              conteudoDoBotao: 'CLEAR',
+            }
+          )
           let lista = listsFromTheAlgorithm.visitList 
           let shortestPathList = listsFromTheAlgorithm.path 
           console.log(shortestPathList)
@@ -77,6 +96,7 @@ class Steps extends Component {
   }
 
   limpar() {
+    reproducing=false
     let visitadosLista = document.getElementsByClassName('Visitados')
     let weightList = document.getElementsByClassName('weight')
 
@@ -92,24 +112,27 @@ class Steps extends Component {
     this.setState(
       {
       limpar: false,
-      conteudoDoBotao: 'Reproduce'
+      conteudoDoBotao: 'REPRODUCE'
     } )
 
   }
 
 
   pintarQuadradinho(ids, pathShow){
-    if(pathShow){
-      let block = document.getElementById(ids)
-      console.log(block)
-      block.className = 'block Visitados Path'
-    } else {
+    if(this.state.limpar){
       
-      ids.forEach(id => {
-        let block = document.getElementById(id)
-        block.className += ' Visitados'
-  
-      })
+      if(pathShow){
+        let block = document.getElementById(ids)
+        console.log(block)
+        block.className = 'block Visitados Path'
+      } else {
+        
+        ids.forEach(id => {
+          let block = document.getElementById(id)
+          block.className += ' Visitados'
+    
+        })
+      }
     }
   }
 
@@ -140,4 +163,4 @@ class Steps extends Component {
 
 }
 
-export default Steps
+export {Steps, reproducing}

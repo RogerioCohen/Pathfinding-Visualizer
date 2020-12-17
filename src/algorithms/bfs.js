@@ -12,6 +12,7 @@ function bfs(idBeginning, idEnd, matrix){
     let visitList = []
     let parent = []
     let seen = []
+    console.log(matrix)
     ibeg = Number(idBeginning.split('-')[0])
     jbeg = Number(idBeginning.split('-')[1])
     iend = Number(idEnd.split('-')[0])

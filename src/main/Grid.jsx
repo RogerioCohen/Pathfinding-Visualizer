@@ -9,6 +9,8 @@ import blackWeight from '../assets/images/weight.svg'
 import pinkWeight from '../assets/images/weight-pink.svg'
 import blackMouse from '../assets/images/mouse.svg'
 import greenMouse from '../assets/images/mouse-green.svg'
+import {Steps} from '../components/Steps'
+import {reproducing} from '../components/Steps'
 import './Grid.css'
 
 
@@ -35,14 +37,14 @@ class Block extends Component {
                     let isWall = this.props.selectedBtn === 'walls'
                     let isEraser = this.props.selectedBtn === 'eraser'
                     let isWeight = this.props.selectedBtn === 'weight'
-
+                    if(reproducing) return
                     if(isWall || isEraser || isWeight){
                         return this.paint(e, isEraser, isWall, isWeight)
                     } 
                     return 
                 }}
                 onClick={e => {
-                    if(this.props.selectedBtn){
+                    if(!reproducing && this.props.selectedBtn){
                         return this.paint(e, this.props.selectedBtn==='eraser', this.props.selectedBtn==='walls', this.props.selectedBtn==='weight')
                     }
                     return
@@ -137,12 +139,16 @@ class Grid extends Component {
                 >
                     {this.creatingGridArea()}
                 </div>
-                <div className="grid-paint">
-                    <PaintBtn id="beginning" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.beginning}>Put the Mouse</PaintBtn>
-                    <PaintBtn id="end" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.end}>Put the Cheese</PaintBtn>
-                    <PaintBtn id="walls" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.walls}>Paint the Walls</PaintBtn>
-                    <PaintBtn id="eraser" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.eraser}>Erase Mistakes</PaintBtn>
-                    <PaintBtn id="weight" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.weight}>Put the Weights</PaintBtn>
+                <div className="grid-controls">
+                    <div className="grid-paint">
+                        <PaintBtn id="beginning" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.beginning}>Put the Mouse</PaintBtn>
+                        <PaintBtn id="end" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.end}>Put the Cheese</PaintBtn>
+                        <PaintBtn id="walls" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.walls}>Paint the Walls</PaintBtn>
+                        <PaintBtn id="eraser" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.eraser}>Erase Mistakes</PaintBtn>
+                        <PaintBtn id="weight" onClick={this.changeTheSelectedButton.bind(this)} srcIndex={this.state.weight}>Put the Weights</PaintBtn>
+                    </div>
+
+                    <Steps></Steps>
 
                 </div>
             </div>
