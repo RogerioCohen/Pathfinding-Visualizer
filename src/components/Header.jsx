@@ -117,7 +117,7 @@ class Header extends React.Component{
                     this.teste(event)
                     }
                     }>
-                    View Dijstra                        
+                        View Dijstra                        
                 </button> 
                      
                 
@@ -127,7 +127,7 @@ class Header extends React.Component{
                     this.teste(event)
                     }
                     }>
-                    View A*
+                        View A*
                 </button>                                          
                                       
              
@@ -142,7 +142,7 @@ class Header extends React.Component{
                     this.handleClickDFS(event);
                     this.teste(event)
                     } }>
-                    View DFS
+                        View DFS
                 </button>      
                 <h1 className="title"> Pathfinding Visualizer</h1>
 
